@@ -1,4 +1,4 @@
-// File: /Users/giorgikhimshiashvili/Desktop/Social Dining Platform Design/app/page.tsx
+// File: /Users/giorgikhimshiashvili/Desktop/work/a new era/DineWithUs/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
