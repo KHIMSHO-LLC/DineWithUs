@@ -159,7 +159,7 @@ export function SearchResults({ searchParams, onNavigate }: SearchResultsProps) 
             <Checkbox
               id="instant-book"
               checked={instantBookOnly}
-              onCheckedChange={setInstantBookOnly}
+              onCheckedChange={(checkedState) => setInstantBookOnly(checkedState === true)}
             />
             <label htmlFor="instant-book" className="text-sm font-medium">
               Instant Book only
@@ -169,7 +169,7 @@ export function SearchResults({ searchParams, onNavigate }: SearchResultsProps) 
             <Checkbox
               id="superhost"
               checked={superhostOnly}
-              onCheckedChange={setSuperhostOnly}
+              onCheckedChange={(checked) => setSuperhostOnly(checked === true)}
             />
             <label htmlFor="superhost" className="text-sm font-medium">
               Superhost only

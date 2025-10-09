@@ -1,15 +1,18 @@
 'use client'
 
 import { useMemo } from 'react'
+import { useParams } from 'next/navigation'
 import { Header } from '@/components/header'
 import { DinnerDetail } from '@/components/dinner-detail'
 import { mockData } from '@/lib/mock-data'
 
-export default function DinnerDetailPage({ params }: { params: { id: string } }) {
-	const dinner = useMemo(() => mockData.dinners.find(d => String(d.id) === params.id), [params.id])
+export default function DinnerDetailPage() {
+	const params = useParams()
+	const id = Array.isArray(params?.id) ? params?.id[0] : (params?.id as string)
+	const dinner = useMemo(() => mockData.dinners.find(d => String(d.id) === id), [id])
 	return (
 		<div className="min-h-screen bg-background">
-			<Header onSearch={() => {}} />
+			<Header />
 			{dinner ? (
 				<DinnerDetail dinner={dinner} onNavigate={() => {}} />
 			) : (
