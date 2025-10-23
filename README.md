@@ -52,14 +52,35 @@ DineWithUs/
 
 ## Deployment
 
-✅ **Your project is ready to deploy on Vercel!**
+✅ **Your project is ready to deploy on Vercel with Supabase!**
 
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
-
-**Quick Deploy:**
+### Quick Setup
 ```bash
+# Run the setup script
+./setup-vercel.sh
+
+# Deploy to Vercel
 npm install -g vercel
-vercel
+vercel --prod
+```
+
+### Prerequisites
+- [Supabase](https://supabase.com) account
+- [Vercel](https://vercel.com) account
+- Google OAuth credentials
+
+### Detailed Instructions
+- **Supabase Setup**: [SUPABASE_SETUP_GUIDE.md](./SUPABASE_SETUP_GUIDE.md) - Complete step-by-step guide
+- **Supabase Checklist**: [SUPABASE_CHECKLIST.md](./SUPABASE_CHECKLIST.md) - Track your progress
+- **Vercel Deployment**: [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) - Deployment instructions
+
+### Environment Variables
+```bash
+DATABASE_URL="postgresql://..." # Supabase connection string
+NEXTAUTH_SECRET="your-secret"   # Generate with: openssl rand -base64 32
+NEXTAUTH_URL="https://your-app.vercel.app"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
 ```
 
 ## Features

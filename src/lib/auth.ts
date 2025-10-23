@@ -6,6 +6,7 @@ import { prisma } from './prisma'
 
 export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === 'development', // Enable debug mode in development
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,

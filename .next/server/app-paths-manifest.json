@@ -1,9 +1,10 @@
 {
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/auth/update-role/route": "app/api/auth/update-role/route.js",
   "/page": "app/page.js",
-  "/profile/page": "app/profile/page.js",
+  "/auth/signin/page": "app/auth/signin/page.js",
+  "/auth/callback/page": "app/auth/callback/page.js",
   "/auth/role-selection/page": "app/auth/role-selection/page.js",
   "/host/dashboard/page": "app/host/dashboard/page.js",
-  "/auth/signin/page": "app/auth/signin/page.js",
-  "/help-center/page": "app/help-center/page.js"
+  "/profile/page": "app/profile/page.js"
 }

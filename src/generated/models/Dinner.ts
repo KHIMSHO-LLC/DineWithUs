@@ -976,6 +976,7 @@ export type DinnerCreateOrConnectWithoutHostInput = {
 
 export type DinnerCreateManyHostInputEnvelope = {
   data: Prisma.DinnerCreateManyHostInput | Prisma.DinnerCreateManyHostInput[]
+  skipDuplicates?: boolean
 }
 
 export type DinnerUpsertWithWhereUniqueWithoutHostInput = {
@@ -2267,6 +2268,7 @@ export type DinnerCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * The data used to create many Dinners.
    */
   data: Prisma.DinnerCreateManyInput | Prisma.DinnerCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -2285,6 +2287,7 @@ export type DinnerCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many Dinners.
    */
   data: Prisma.DinnerCreateManyInput | Prisma.DinnerCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
