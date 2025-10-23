@@ -124,3 +124,4 @@ storybook-static
 
 oauth-secrets.json
 /src/generated/prisma
+.vercel
