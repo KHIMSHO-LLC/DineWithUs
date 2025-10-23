@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { MainLayout } from '@/components/layout/main-layout'
@@ -111,7 +111,7 @@ const mockReviews = [
   }
 ]
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -606,5 +606,22 @@ export default function ProfilePage() {
         </div>
       </div>
     </MainLayout>
+  )
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={
+      <MainLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
+        </div>
+      </MainLayout>
+    }>
+      <ProfilePageContent />
+    </Suspense>
   )
 }

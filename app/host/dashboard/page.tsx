@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { MainLayout } from '@/components/layout/main-layout'
@@ -119,7 +119,7 @@ const mockBookings = [
   }
 ]
 
-export default function HostDashboardPage() {
+function HostDashboardContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { data: session, status } = useSession()
@@ -907,5 +907,22 @@ export default function HostDashboardPage() {
         </div>
       </MainLayout>
     </HostGuard>
+  )
+}
+
+export default function HostDashboardPage() {
+  return (
+    <Suspense fallback={
+      <MainLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
+        </div>
+      </MainLayout>
+    }>
+      <HostDashboardContent />
+    </Suspense>
   )
 }

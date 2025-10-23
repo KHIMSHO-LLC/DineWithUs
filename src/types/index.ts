@@ -8,6 +8,7 @@ export interface Dinner {
   date: string
   time: string
   capacity: number
+  available: number
   instantBook: boolean
   rating: number
   reviewCount: number

@@ -14,7 +14,9 @@ export const mockData = {
         superhost: true,
         memberSince: "2020",
         responseRate: 98,
-        languages: ["English", "Italian"]
+        languages: ["English", "Italian"],
+        joinedDate: "2020-01-15",
+        responseTime: "within an hour"
       },
       price: 65,
       currency: "USD",
@@ -68,7 +70,9 @@ export const mockData = {
         superhost: true,
         memberSince: "2019",
         responseRate: 100,
-        languages: ["English", "Japanese"]
+        languages: ["English", "Japanese"],
+        joinedDate: "2019-03-20",
+        responseTime: "within an hour"
       },
       price: 120,
       currency: "USD",
@@ -90,7 +94,8 @@ export const mockData = {
       location: {
         city: "Manhattan",
         state: "NY",
-        neighborhood: "East Village"
+        neighborhood: "East Village",
+        address: "456 2nd Ave"
       },
       description: "An intimate omakase experience featuring seasonal ingredients and traditional Japanese techniques in a modern setting.",
       menu: [
@@ -119,7 +124,9 @@ export const mockData = {
         superhost: false,
         memberSince: "2021",
         responseRate: 95,
-        languages: ["English", "French"]
+        languages: ["English", "French"],
+        joinedDate: "2021-06-10",
+        responseTime: "within a few hours"
       },
       price: 85,
       currency: "USD",
@@ -141,7 +148,8 @@ export const mockData = {
       location: {
         city: "San Francisco",
         state: "CA",
-        neighborhood: "Mission District"
+        neighborhood: "Mission District",
+        address: "789 Mission St"
       },
       description: "Classic French bistro cuisine in a cozy apartment setting, featuring seasonal ingredients and traditional cooking methods.",
       menu: [
