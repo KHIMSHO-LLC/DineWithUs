@@ -1,3 +1,5 @@
+import { Dinner, Host, Location, Review } from '@/types'
+
 export const mockData = {
   dinners: [
     {

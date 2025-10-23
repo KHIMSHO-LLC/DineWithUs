@@ -1,14 +1,33 @@
 'use client'
 
-import { Header } from '@/components/header'
-import { SearchResults } from '@/components/search-results'
+import { useSearchParams } from 'next/navigation'
+import { PageLayout } from '@/components/layout/page-layout'
+import { SearchResults } from '@/components/search/search-results'
+import { BookingGuard } from '@/components/auth/booking-guard'
 
 export default function SearchPage() {
+	const searchParams = useSearchParams()
+	
+	// Parse search parameters from URL
+	const location = searchParams.get('location') || ''
+	const dateParam = searchParams.get('date')
+	const guestsParam = searchParams.get('guests')
+	
+	const date = dateParam ? new Date(dateParam) : undefined
+	const guests = guestsParam ? parseInt(guestsParam, 10) : 2
+	
+	const searchParamsObj = {
+		location,
+		date,
+		guests
+	}
+
 	return (
-		<div className="min-h-screen bg-background">
-			<Header onSearch={(params) => { /* no-op: handled in client */ }} />
-			<SearchResults searchParams={{}} onNavigate={() => {}} />
-		</div>
+		<BookingGuard>
+			<PageLayout>
+				<SearchResults searchParams={searchParamsObj} />
+			</PageLayout>
+		</BookingGuard>
 	)
 }
 

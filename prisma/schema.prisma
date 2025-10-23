@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  image         String?
+  role          String    @default("guest") // guest, host, admin
+  emailVerified DateTime?
+  needsRoleSelection Boolean @default(false) // Flag for new Google OAuth users
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts Account[]
+  sessions Session[]
+  dinners  Dinner[]
+  bookings Booking[]
+  reviews  Review[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Dinner {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  currency    String   @default("USD")
+  date        DateTime
+  time        String
+  duration    Int      // in minutes
+  capacity    Int
+  available   Int
+  images      String   // JSON array of image URLs
+  cuisine     String
+  dietary     String   // JSON array of dietary options
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  instantBook Boolean  @default(false)
+  menu        String   // JSON array of menu items
+  included    String   // JSON array of included items
+  houseRules  String   // JSON array of house rules
+  location    String   // JSON object with location data
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  hostId   String
+  host     User      @relation(fields: [hostId], references: [id])
+  bookings Booking[]
+  reviews  Review[]
+
+  @@map("dinners")
+}
+
+model Booking {
+  id        String      @id @default(cuid())
+  status    BookingStatus @default(PENDING)
+  guests    Int
+  totalPrice Float
+  message   String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  // Relations
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  dinnerId String
+  dinner   Dinner @relation(fields: [dinnerId], references: [id])
+
+  @@map("bookings")
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5 stars
+  comment   String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  dinnerId String
+  dinner   Dinner @relation(fields: [dinnerId], references: [id])
+
+  @@unique([userId, dinnerId]) // One review per user per dinner
+  @@map("reviews")
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
