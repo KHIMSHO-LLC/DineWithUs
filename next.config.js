@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	serverExternalPackages: ['@prisma/client', '@prisma/engines'],
 	images: {
 		remotePatterns: [
 			{ protocol: 'https', hostname: 'images.unsplash.com' },
