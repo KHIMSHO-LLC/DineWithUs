@@ -164,7 +164,7 @@ export function SearchWidget({ variant = 'hero', className = '', initialParams }
   }
 
   return (
-    <div className={`bg-white rounded-2xl shadow-modal border border-border p-4 ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-modal border border-border p-4 relative z-50 ${className}`}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Location */}
         <div className="relative">

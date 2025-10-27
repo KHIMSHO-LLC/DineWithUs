@@ -13,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import {
   Search,
   Menu,
@@ -36,7 +35,6 @@ export function Header({ onSearch }: HeaderProps = {}) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,11 +68,6 @@ export function Header({ onSearch }: HeaderProps = {}) {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
-            {/* Language/Globe */}
-            {/* <Button variant="ghost" size="sm" className="hidden md:flex p-3 rounded-full">
-              <Globe className="w-4 h-4" />
-            </Button> */}
-
             {/* User Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -177,161 +170,6 @@ export function Header({ onSearch }: HeaderProps = {}) {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
-
-            {/* Mobile Menu */}
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Menu className="w-5 h-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-80">
-                <div className="flex flex-col space-y-4 mt-8">
-                  {session ? (
-                    <>
-                      <div className="flex items-center space-x-3 pb-4 border-b">
-                        <Avatar className="w-10 h-10">
-                          <AvatarImage
-                            src={session.user?.image || ""}
-                            alt={session.user?.name || "User avatar"}
-                          />
-                          <AvatarFallback>
-                            {session.user?.name ? (
-                              session.user.name.charAt(0).toUpperCase()
-                            ) : (
-                              <User className="w-5 h-5" />
-                            )}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-semibold">
-                            {session.user?.name || session.user?.email}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {session.user?.role === "host" ? "Host" : "Guest"}
-                          </p>
-                        </div>
-                      </div>
-                      {session.user?.role === "host" ? (
-                        <>
-                          <Button
-                            className="justify-start"
-                            variant="ghost"
-                            onClick={() => router.push("/host/dashboard")}
-                          >
-                            <ChefHat className="w-4 h-4 mr-2" />
-                            Host Dashboard
-                          </Button>
-                          <Button
-                            className="justify-start"
-                            variant="ghost"
-                            onClick={() => router.push("/host/dashboard?tab=dinners")}
-                          >
-                            <Calendar className="w-4 h-4 mr-2" />
-                            My Dinners
-                          </Button>
-                          <Button 
-                            className="justify-start" 
-                            variant="ghost"
-                            onClick={() => router.push("/host/dashboard?tab=bookings")}
-                          >
-                            <Calendar className="w-4 h-4 mr-2" />
-                            Bookings
-                          </Button>
-                          <Button 
-                            className="justify-start" 
-                            variant="ghost"
-                            onClick={() => router.push("/host/dashboard?tab=reviews")}
-                          >
-                            <Heart className="w-4 h-4 mr-2" />
-                            Reviews
-                          </Button>
-                        </>
-                      ) : (
-                        <>
-                          <Button
-                            className="justify-start"
-                            variant="ghost"
-                            onClick={() => router.push("/profile")}
-                          >
-                            My Profile
-                          </Button>
-                          <Button 
-                            className="justify-start" 
-                            variant="ghost"
-                            onClick={() => router.push("/profile?tab=bookings")}
-                          >
-                            <Calendar className="w-4 h-4 mr-2" />
-                            My bookings
-                          </Button>
-                          <Button 
-                            className="justify-start" 
-                            variant="ghost"
-                            onClick={() => router.push("/profile?tab=reviews")}
-                          >
-                            <Heart className="w-4 h-4 mr-2" />
-                            My reviews
-                          </Button>
-                        </>
-                      )}
-                      <div className="border-t pt-4 space-y-2">
-                        <Button 
-                          className="justify-start" 
-                          variant="ghost"
-                          onClick={() => router.push("/help-center")}
-                        >
-                          <HelpCircle className="w-4 h-4 mr-2" />
-                          Help Center
-                        </Button>
-                        <Button
-                          className="justify-start"
-                          variant="ghost"
-                          onClick={() => router.push(session.user?.role === "host" ? "/host/dashboard?tab=settings" : "/profile?tab=settings")}
-                        >
-                          <Settings className="w-4 h-4 mr-2" />
-                          Account Settings
-                        </Button>
-                        <Button
-                          className="justify-start"
-                          variant="ghost"
-                          onClick={() => signOut({ callbackUrl: "/" })}
-                        >
-                          <LogOut className="w-4 h-4 mr-2" />
-                          Sign out
-                        </Button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        className="justify-start"
-                        variant="ghost"
-                        onClick={() => router.push("/auth/signup")}
-                      >
-                        Sign up
-                      </Button>
-                      <Button
-                        className="justify-start"
-                        variant="ghost"
-                        onClick={() => router.push("/auth/signin")}
-                      >
-                        Log in
-                      </Button>
-                      <div className="border-t pt-4 space-y-2">
-                        <Button 
-                          className="justify-start" 
-                          variant="ghost"
-                          onClick={() => router.push("/help-center")}
-                        >
-                          <HelpCircle className="w-4 h-4 mr-2" />
-                          Help Center
-                        </Button>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </SheetContent>
-            </Sheet>
           </div>
         </div>
       </div>

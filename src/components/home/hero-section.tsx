@@ -24,7 +24,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 text-center text-white max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {isHost ? (
           <>
             <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8">
@@ -44,15 +44,15 @@ export function HeroSection() {
           </>
         ) : (
           <>
-            <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight mb-3 sm:mb-6">
               Find Your Next Authentic <br />Dining Experience
             </h1>
-            <p className="text-lg lg:text-xl font-normal leading-relaxed mb-10 text-white/90">
+            <p className="text-sm sm:text-base lg:text-xl font-normal leading-relaxed mb-4 sm:mb-8 text-white/90">
               Connect with local hosts for unforgettable meals in their homes
             </p>
             
             {/* Search Widget - Only show for guests */}
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl mx-auto relative z-50">
               <SearchWidget variant="hero" />
             </div>
           </>

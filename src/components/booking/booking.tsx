@@ -59,9 +59,9 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background">
       {/* Back Button */}
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4">
         <Button 
           variant="ghost" 
           onClick={() => onNavigate('dinner-detail', { dinner })}
@@ -72,36 +72,36 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
         </Button>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
         {/* Progress */}
-        <div className="flex items-center justify-center mb-8">
-          <div className="flex items-center space-x-4">
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-              step >= 1 ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+        <div className="flex items-center justify-center mb-4 sm:mb-6 overflow-x-auto">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm flex-shrink-0 ${
+              step >= 1 ? 'bg-muted text-muted-foreground' : 'bg-muted text-muted-foreground'
             }`}>
               1
             </div>
-            <div className={`w-12 h-0.5 ${step >= 2 ? 'bg-primary' : 'bg-muted'}`} />
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-              step >= 2 ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+            <div className={`w-8 sm:w-12 h-0.5 flex-shrink-0 ${step >= 2 ? 'bg-primary' : 'bg-muted'}`} />
+            <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm flex-shrink-0 ${
+              step >= 2 ? 'bg-muted text-muted-foreground' : 'bg-muted text-muted-foreground'
             }`}>
               2
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {/* Main Content */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {step === 1 ? (
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Users className="w-5 h-5" />
+                <CardHeader className="p-4 sm:p-6">
+                  <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Guest Details</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 p-4 sm:p-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">First name *</Label>
@@ -146,13 +146,14 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
                   </div>
                   
                   <div>
-                    <Label htmlFor="requests">Special requests or dietary restrictions</Label>
+                    <Label htmlFor="requests" className="text-sm font-medium">Special requests or dietary restrictions</Label>
                     <Textarea
                       id="requests"
                       value={guestDetails.specialRequests}
                       onChange={(e) => setGuestDetails(prev => ({ ...prev, specialRequests: e.target.value }))}
                       placeholder="Let the host know about any allergies, dietary preferences, or special requests..."
-                      rows={3}
+                      rows={4}
+                      className="mt-2 resize-none"
                     />
                   </div>
 
@@ -252,10 +253,10 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
           {/* Booking Summary */}
           <div>
             <Card className="sticky top-24">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 {/* Dinner Info */}
-                <div className="flex space-x-4 mb-6">
-                  <div className="relative w-20 h-16">
+                <div className="flex space-x-3 sm:space-x-4 mb-4 sm:mb-6">
+                  <div className="relative w-16 h-12 sm:w-20 sm:h-16">
                     <Image
                       src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&h=160&fit=crop&crop=center"
                       alt={dinner.title}
@@ -265,9 +266,9 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-sm line-clamp-2">{dinner.title}</h3>
+                    <h3 className="font-semibold text-xs sm:text-sm line-clamp-2">{dinner.title}</h3>
                     <div className="flex items-center space-x-1 mt-1">
-                      <Avatar className="w-4 h-4">
+                      <Avatar className="w-3 h-3 sm:w-4 sm:h-4">
                         <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt={dinner.host.name} />
                         <AvatarFallback>{dinner.host.name[0]}</AvatarFallback>
                       </Avatar>
@@ -276,12 +277,12 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
                   </div>
                 </div>
 
-                <Separator className="mb-6" />
+                <Separator className="mb-4 sm:mb-6" />
 
                 {/* Booking Details */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3 text-sm">
-                    <Calendar className="w-4 h-4 text-muted-foreground" />
+                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
                     <span>
                       {date ? date.toLocaleDateString('en-US', { 
                         weekday: 'long', 
@@ -290,21 +291,21 @@ export function Booking({ dinner, date, guests, onNavigate }: BookingProps) {
                       }) : 'Date not selected'}
                     </span>
                   </div>
-                  <div className="flex items-center space-x-3 text-sm">
-                    <Clock className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
                     <span>{dinner.time}</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-sm">
-                    <Users className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+                    <Users className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
                     <span>{guests} {guests === 1 ? 'guest' : 'guests'}</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-sm">
-                    <MapPin className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
                     <span>{dinner.location.neighborhood}, {dinner.location.city}</span>
                   </div>
                 </div>
 
-                <Separator className="mb-6" />
+                <Separator className="mb-4 sm:mb-6" />
 
                 {/* Price Breakdown */}
                 <div className="space-y-3 text-sm">

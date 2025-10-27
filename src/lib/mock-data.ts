@@ -82,9 +82,11 @@ export const mockData = {
       capacity: 6,
       available: 2,
       images: [
-        "/dinners/japanese-1.jpg",
-        "/dinners/japanese-2.jpg",
-        "/dinners/japanese-3.jpg"
+        "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1571155329189-7e5b2e1d68cc?w=1200&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=1200&h=800&fit=crop",
+        "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=1200&h=800&fit=crop"
       ],
       cuisine: "Japanese",
       dietary: ["gluten-free options"],
