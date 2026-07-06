@@ -20,9 +20,9 @@ export const OrganizationSchema = {
   description: 'Marketplace for authentic home-cooked dining experiences hosted by verified locals in Iceland.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Stórikríki 17',
-    addressLocality: 'Mosfellsbær',
-    postalCode: '270',
+    streetAddress: 'Héðisgsata 2',
+    addressLocality: 'Reykjavík',
+    postalCode: '105',
     addressCountry: 'IS',
   },
   contactPoint: {
